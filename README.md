@@ -6,17 +6,17 @@
 
 ## About
 
-Personal portfolio website built with HTML, CSS, and JavaScript — showcasing my experience, skills, and projects as a Software Developer.
+Personal portfolio website - showcasing my experience, skills, and projects as a Software Developer.
 
 ---
 
 ## Sections
 
-- **Hero** — Introduction and quick overview
-- **Experience** — Work history including current role at Petrotech Safety Solutions
-- **Skills** — Technical and soft skills
-- **Projects** — 10 projects with links to their GitHub repositories
-- **Contact** — Email, LinkedIn, GitHub, and phone
+- **Hero** - Introduction and quick overview
+- **Experience** - Work history including current role at Petrotech Safety Solutions
+- **Skills** - Technical and soft skills
+- **Projects** - 10 projects with links to their GitHub repositories
+- **Contact** - Email, LinkedIn, GitHub, and phone
 
 ---
 
