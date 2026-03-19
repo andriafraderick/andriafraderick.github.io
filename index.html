@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Andria Fraderick | Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0b0c10;
+    --surface: #13141a;
+    --surface2: #1c1e27;
+    --accent: #c8f04c;
+    --accent2: #7ee8a2;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --border: rgba(255,255,255,0.07);
+    --radius: 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(11,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,240,76,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+    animation: blobPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes blobPulse {
+    0%, 100% { transform: scale(1) translate(0,0); }
+    50% { transform: scale(1.1) translate(-30px, 30px); }
+  }
+
+  .hero-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0b0c10;
+  }
+
+  .btn-primary:hover {
+    background: #dff76a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,240,76,0.35);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 1s forwards;
+  }
+
+  .badge {
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 7rem 6vw;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 3.5rem;
+    color: var(--text);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--surface); }
+
+  .exp-grid {
+    display: grid;
+    gap: 1.5px;
+  }
+
+  .exp-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    margin-bottom: 1rem;
+  }
+
+  .exp-card:hover {
+    border-color: rgba(200,240,76,0.3);
+    transform: translateX(4px);
+  }
+
+  .exp-card.current {
+    border-color: rgba(200,240,76,0.4);
+    background: linear-gradient(135deg, rgba(200,240,76,0.05) 0%, var(--surface2) 60%);
+  }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin: 0.2rem 0;
+    font-weight: 500;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    line-height: 1.7;
+  }
+
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+
+  .current-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #0b0c10;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem;
+    border-radius: 50px;
+    margin-left: 0.6rem;
+    vertical-align: middle;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .skill-pill {
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+
+  .skill-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(200,240,76,0.07);
+  }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: rgba(200,240,76,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(200,240,76,0.15);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.86rem;
+    color: var(--muted);
+    flex: 1;
+    line-height: 1.7;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 4px;
+    background: rgba(200,240,76,0.1);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* ─── ABOUT / CONTACT ─── */
+  #contact { background: var(--surface); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .contact-link svg { flex-shrink: 0; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 6vw;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── DIVIDER ─── */
+  .line {
+    height: 1px;
+    background: var(--border);
+    margin: 0 6vw;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-card { grid-template-columns: 1fr; }
+    .exp-date { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">AF.</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob"></div>
+  <p class="hero-label">Available for opportunities</p>
+  <h1>Andria<br/><span>Fraderick</span></h1>
+  <p class="hero-desc">Computer Science Engineer crafting scalable web applications with Python, Django, FastAPI, and React — with a passion for clean code and real-world impact.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="mailto:andriafraderick02@gmail.com" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-badges">
+    <span class="badge">Python</span>
+    <span class="badge">Django · FastAPI</span>
+    <span class="badge">React</span>
+    <span class="badge">SQL</span>
+    <span class="badge">Machine Learning</span>
+    <span class="badge">REST APIs</span>
+    <span class="badge">Flutter</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Work History</p>
+  <h2 class="section-title reveal">Experience</h2>
+
+  <div class="exp-grid">
+    <div class="exp-card current reveal">
+      <div>
+        <div class="exp-role">Software Developer <span class="current-tag">Current</span></div>
+        <div class="exp-company">Petrotech Safety Solutions, Trivandrum</div>
+        <p class="exp-desc">Building and maintaining software solutions in a safety-critical domain, contributing to full-stack development and system reliability at a leading petroleum safety company.</p>
+      </div>
+      <div class="exp-date">Mar 2026 — Present</div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <div class="exp-role">Python Full Stack Intern</div>
+        <div class="exp-company">Inmakes</div>
+        <p class="exp-desc">Built a full-stack hospital management system (E-Hospitality) using Django/FastAPI, React, and SQL — including RESTful APIs for patient, appointment, and staff management with authentication and CRUD operations.</p>
+      </div>
+      <div class="exp-date">Sep 2025 — Dec 2025</div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <div class="exp-role">Full Stack Web Development Intern</div>
+        <div class="exp-company">Quandance Technologies</div>
+        <p class="exp-desc">Built secure RESTful APIs using FastAPI, tested endpoints via Postman, and managed databases with Navicat — ensuring robust backend functionality and data integrity.</p>
+      </div>
+      <div class="exp-date">Jul 2025 — Aug 2025</div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <div class="exp-role">Flutter Web Application Developer</div>
+        <div class="exp-company">IITM Pravartak (Fellowship)</div>
+        <p class="exp-desc">Developed an interactive Python learning platform (CodeQuest) with game-based exercises and adaptive quizzes. Led a 4-member Agile team to launch within 8 weeks, achieving 90% positive feedback.</p>
+      </div>
+      <div class="exp-date">Nov 2024 — Oct 2025</div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div>
+        <div class="exp-role">Web Development Intern</div>
+        <div class="exp-company">Keltron</div>
+        <p class="exp-desc">Designed a digital menu board using HTML/CSS/JavaScript, reducing paper waste by 100% and improving cafeteria workflow efficiency.</p>
+      </div>
+      <div class="exp-date">Apr 2023</div>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">What I work with</p>
+  <h2 class="section-title reveal">Skills</h2>
+  <div style="margin-bottom:2rem">
+    <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Technical</p>
+    <div class="skills-wrap reveal">
+      <span class="skill-pill">Python</span>
+      <span class="skill-pill">Django</span>
+      <span class="skill-pill">FastAPI</span>
+      <span class="skill-pill">React</span>
+      <span class="skill-pill">Flutter</span>
+      <span class="skill-pill">SQL</span>
+      <span class="skill-pill">HTML / CSS</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">C</span>
+      <span class="skill-pill">REST APIs</span>
+      <span class="skill-pill">Firebase</span>
+      <span class="skill-pill">Flask</span>
+      <span class="skill-pill">Scikit-learn</span>
+      <span class="skill-pill">Machine Learning</span>
+      <span class="skill-pill">Postman</span>
+      <span class="skill-pill">Git</span>
+    </div>
+  </div>
+  <div>
+    <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Soft Skills</p>
+    <div class="skills-wrap reveal">
+      <span class="skill-pill">Team Collaboration</span>
+      <span class="skill-pill">Agile / Scrum</span>
+      <span class="skill-pill">Process Innovation</span>
+      <span class="skill-pill">Resource Coordination</span>
+      <span class="skill-pill">Communication</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--surface)">
+  <p class="section-label reveal">What I've built</p>
+  <h2 class="section-title reveal">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-num">01</div>
+      <div class="project-title">CodeQuest — Python Learning Platform</div>
+      <p class="project-desc">Game-based learning platform with Hangman/drag-and-drop exercises, Firebase authentication, and an adaptive quiz system that reduced beginner dropout rates by 35%.</p>
+      <div class="project-tags">
+        <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Agile</span><span class="tag">Adaptive Learning</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">02</div>
+      <div class="project-title">Malicious URL Detection (ML)</div>
+      <p class="project-desc">Random Forest classifier analyzing URL length, domain age, and lexical patterns. Outperformed Logistic Regression by 12% accuracy, deployed via Flask API processing 100+ requests/min.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Flask</span><span class="tag">Random Forest</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">03</div>
+      <div class="project-title">E-Hospitality — Hospital Management System</div>
+      <p class="project-desc">Full-stack hospital management app with Django/FastAPI REST APIs, React frontend, authentication, and CRUD for patient, appointment, and staff workflows.</p>
+      <div class="project-tags">
+        <span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">04</div>
+      <div class="project-title">Recipe World</div>
+      <p class="project-desc">Recipe management platform enabling users to add, view, and manage recipes with full database integration and a clean, responsive UI.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Django</span><span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">05</div>
+      <div class="project-title">Blog Application</div>
+      <p class="project-desc">Blogging platform supporting content creation, editing, and CRUD operations with user authentication and a responsive design.</p>
+      <div class="project-tags">
+        <span class="tag">Django</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">06</div>
+      <div class="project-title">Tourist Destinations App</div>
+      <p class="project-desc">Responsive web application to display tourist locations with structured UI and dynamic routing for smooth navigation.</p>
+      <div class="project-tags">
+        <span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">Let's connect</p>
+  <h2 class="section-title reveal">Get in Touch</h2>
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="contact-text">I'm currently working as a Software Developer at Petrotech Safety Solutions, Trivandrum. Always open to interesting conversations, collaborations, or new opportunities.</p>
+      <a href="mailto:andriafraderick02@gmail.com" class="btn btn-primary">Say Hello →</a>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:andriafraderick02@gmail.com" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        andriafraderick02@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/andriafraderick" target="_blank" class="contact-link">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/andriafraderick
+      </a>
+      <a href="tel:+918848931394" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 0 0 .06 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 88489 31394
+      </a>
+      <a href="https://github.com" target="_blank" class="contact-link">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        GitHub Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Andria Fraderick · Built with HTML, CSS & JS · Deployed on GitHub Pages</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
