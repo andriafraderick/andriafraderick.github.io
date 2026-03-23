@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Andria Fraderick | Software Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
     --bg: #0b0c10;
@@ -19,6 +19,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -26,17 +27,25 @@
     pointer-events: none; z-index: 0; opacity: 0.4;
   }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 6vw; background: rgba(11,12,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(11,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
   .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
 
-  /* HERO */
+  /* ── HERO ── */
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; position: relative; overflow: hidden; }
   .hero-blob { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(200,240,76,0.12) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; animation: blobPulse 8s ease-in-out infinite; }
   @keyframes blobPulse { 0%,100%{transform:scale(1) translate(0,0)} 50%{transform:scale(1.1) translate(-30px,30px)} }
+
   .hero-label { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity:0; animation: fadeUp 0.7s 0.2s forwards; }
   h1 { font-family: 'Syne', sans-serif; font-size: clamp(3.2rem,8vw,7rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1.8rem; opacity:0; animation: fadeUp 0.7s 0.4s forwards; }
   h1 span { color: var(--accent); }
@@ -51,12 +60,12 @@
   .badge { padding: 0.35rem 1rem; border-radius: 50px; background: var(--surface); border: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-  /* SECTIONS */
+  /* ── SECTIONS ── */
   section { padding: 7rem 6vw; position: relative; }
   .section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
   .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 3.5rem; color: var(--text); }
 
-  /* EXPERIENCE */
+  /* ── EXPERIENCE ── */
   #experience { background: var(--surface); }
   .exp-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.2rem; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; transition: border-color 0.2s, transform 0.2s; margin-bottom: 1rem; }
   .exp-card:hover { border-color: rgba(200,240,76,0.3); transform: translateX(4px); }
@@ -67,21 +76,32 @@
   .exp-date { font-size: 0.78rem; color: var(--muted); text-align: right; white-space: nowrap; }
   .current-tag { display: inline-block; background: var(--accent); color: #0b0c10; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 50px; margin-left: 0.6rem; vertical-align: middle; }
 
-  /* SKILLS */
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
   .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .skill-pill { padding: 0.55rem 1.3rem; border-radius: 50px; background: var(--surface2); border: 1px solid var(--border); font-size: 0.88rem; color: var(--text); font-weight: 400; transition: all 0.2s; }
   .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,240,76,0.07); }
 
-  /* PROJECTS */
+  /* ── PROJECTS ── */
   #projects { background: var(--surface); }
   .projects-filter { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .filter-btn { padding: 0.4rem 1.1rem; border-radius: 50px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 0.8rem; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; }
   .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(200,240,76,0.07); }
+
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+
   .project-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; transition: all 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; cursor: pointer; position: relative; overflow: hidden; }
   .project-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,240,76,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
   .project-card:hover { border-color: rgba(200,240,76,0.4); transform: translateY(-5px); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
   .project-card:hover::after { opacity: 1; }
+
+  /* featured card — project 01 */
+  .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; background: linear-gradient(135deg, rgba(200,240,76,0.06) 0%, var(--bg) 50%); border-color: rgba(200,240,76,0.2); }
+  .project-card.featured .project-num { font-size: 4rem; }
+  .project-card.featured .project-title { font-size: 1.3rem; }
+  .project-card.featured::after { background: linear-gradient(135deg, rgba(200,240,76,0.07) 0%, transparent 50%); }
+  .featured-badge { display: inline-block; background: var(--accent); color: #0b0c10; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 50px; margin-bottom: 0.6rem; }
+
   .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
   .project-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: rgba(200,240,76,0.15); line-height: 1; }
   .github-icon { color: var(--muted); transition: color 0.2s; flex-shrink: 0; margin-top: 4px; }
@@ -92,7 +112,7 @@
   .tag { font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 4px; background: rgba(200,240,76,0.1); color: var(--accent); font-weight: 500; }
   .view-all-wrap { text-align: center; margin-top: 2.5rem; }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   #contact { background: var(--bg); }
   .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .contact-text { font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 2rem; }
@@ -105,6 +125,12 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* GitHub SVG shorthand */
+  .gh { fill: currentColor; }
+
+  @media (max-width: 900px) {
+    .project-card.featured { grid-template-columns: 1fr; }
+  }
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -115,6 +141,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">AF.</a>
   <ul class="nav-links">
@@ -154,7 +181,7 @@
   <div class="exp-card current reveal">
     <div>
       <div class="exp-role">Software Developer <span class="current-tag">Current</span></div>
-      <div class="exp-company">Petrotech Safety Solutions, Trivandrum</div>
+      <div class="exp-company">Petrotech Safety Solutions · Trivandrum</div>
       <p class="exp-desc">Building and maintaining software solutions in a safety-critical domain, contributing to full-stack development and system reliability at a leading petroleum safety company.</p>
     </div>
     <div class="exp-date">Mar 2026 — Present</div>
@@ -203,16 +230,40 @@
 <section id="skills">
   <p class="section-label reveal">What I work with</p>
   <h2 class="section-title reveal">Skills</h2>
+
   <div style="margin-bottom:2rem">
     <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Technical</p>
     <div class="skills-wrap reveal">
-      <span class="skill-pill">Python</span><span class="skill-pill">Django</span><span class="skill-pill">FastAPI</span><span class="skill-pill">React</span><span class="skill-pill">Flutter</span><span class="skill-pill">SQL</span><span class="skill-pill">HTML / CSS</span><span class="skill-pill">JavaScript</span><span class="skill-pill">C</span><span class="skill-pill">REST APIs</span><span class="skill-pill">Firebase</span><span class="skill-pill">Flask</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">Machine Learning</span><span class="skill-pill">Chart.js</span><span class="skill-pill">D3.js</span><span class="skill-pill">Stripe</span><span class="skill-pill">Postman</span><span class="skill-pill">Git</span>
+      <span class="skill-pill">Python</span>
+      <span class="skill-pill">Django</span>
+      <span class="skill-pill">FastAPI</span>
+      <span class="skill-pill">React</span>
+      <span class="skill-pill">Flutter</span>
+      <span class="skill-pill">SQL</span>
+      <span class="skill-pill">HTML / CSS</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">C</span>
+      <span class="skill-pill">REST APIs</span>
+      <span class="skill-pill">Firebase</span>
+      <span class="skill-pill">Flask</span>
+      <span class="skill-pill">Scikit-learn</span>
+      <span class="skill-pill">Machine Learning</span>
+      <span class="skill-pill">Chart.js</span>
+      <span class="skill-pill">D3.js</span>
+      <span class="skill-pill">Stripe</span>
+      <span class="skill-pill">Postman</span>
+      <span class="skill-pill">Git</span>
     </div>
   </div>
+
   <div>
     <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Soft Skills</p>
     <div class="skills-wrap reveal">
-      <span class="skill-pill">Team Collaboration</span><span class="skill-pill">Agile / Scrum</span><span class="skill-pill">Process Innovation</span><span class="skill-pill">Resource Coordination</span><span class="skill-pill">Communication</span>
+      <span class="skill-pill">Team Collaboration</span>
+      <span class="skill-pill">Agile / Scrum</span>
+      <span class="skill-pill">Process Innovation</span>
+      <span class="skill-pill">Resource Coordination</span>
+      <span class="skill-pill">Communication</span>
     </div>
   </div>
 </section>
@@ -231,71 +282,104 @@
 
   <div class="projects-grid">
 
+    <!-- PROJECT 01 — FEATURED (latest) -->
+    <a href="https://github.com/andriafraderick/University-crm-sample" target="_blank" class="project-card featured reveal" data-category="fullstack">
+      <div>
+        <div class="project-num">01</div>
+      </div>
+      <div>
+        <span class="featured-badge">⚡ Latest Project</span>
+        <div class="project-card-top" style="margin-bottom:0.4rem">
+          <div class="project-title">University CRM System</div>
+          <svg class="github-icon" width="22" height="22" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        </div>
+        <p class="project-desc">A full-stack demo web application for managing university operations — students, courses, enrollments, attendance, grades, and fees. Built with Django REST Framework on the backend and React on the frontend, featuring role-based access, RESTful APIs, and a clean admin-facing dashboard.</p>
+        <div class="project-tags">
+          <span class="tag">Django REST Framework</span>
+          <span class="tag">React</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CRM</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROJECT 02 -->
     <a href="https://github.com/andriafraderick/Cinematch" target="_blank" class="project-card reveal" data-category="ml fullstack">
-      <div class="project-card-top"><div class="project-num">01</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">02</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Cinematch</div>
       <p class="project-desc">Full-stack Django app with a hybrid ML recommendation engine combining collaborative filtering and content-based analysis to deliver personalized movie recommendations.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Machine Learning</span><span class="tag">Collaborative Filtering</span><span class="tag">Python</span></div>
     </a>
 
+    <!-- PROJECT 03 -->
     <a href="https://github.com/andriafraderick/SpendWise" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">02</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">03</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">SpendWise</div>
       <p class="project-desc">Full-featured Django expense tracker with bold, colorful UI, Chart.js + D3.js visualizations, multi-user auth, budgets, and category management.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Chart.js</span><span class="tag">D3.js</span><span class="tag">Multi-user Auth</span></div>
     </a>
 
+    <!-- PROJECT 04 -->
     <a href="https://github.com/andriafraderick/PhishGuard" target="_blank" class="project-card reveal" data-category="ml">
-      <div class="project-card-top"><div class="project-num">03</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">04</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">PhishGuard — Malicious URL Detection</div>
       <p class="project-desc">Random Forest classifier analyzing URL length, domain age, and lexical patterns. Outperformed Logistic Regression by 12% accuracy, deployed via Flask API processing 100+ requests/min.</p>
       <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Flask</span><span class="tag">Random Forest</span></div>
     </a>
 
+    <!-- PROJECT 05 -->
     <a href="https://github.com/andriafraderick/Employee-Leave-Management-System" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">04</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">05</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Employee Leave Management System</div>
       <p class="project-desc">Full-stack web application for managing employee leave requests, approvals, and tracking — built with FastAPI backend and React Vite frontend.</p>
       <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQL</span></div>
     </a>
 
+    <!-- PROJECT 06 -->
     <a href="https://github.com/andriafraderick/e-learning-platform" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">05</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">06</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">E-Learning Platform</div>
       <p class="project-desc">Comprehensive Django-based e-learning platform with role-based access control for Students, Trainers, and Managers — supporting structured learning modules.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">RBAC</span><span class="tag">Python</span><span class="tag">SQL</span></div>
     </a>
 
+    <!-- PROJECT 07 -->
     <a href="https://github.com/andriafraderick/E-Hospitality-System" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">06</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">07</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">E-Hospitality — Hospital Management</div>
       <p class="project-desc">Full-stack hospital management app with Django/FastAPI REST APIs, React frontend, authentication, and CRUD for patient, appointment, and staff workflows.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">SQL</span></div>
     </a>
 
+    <!-- PROJECT 08 -->
     <a href="https://github.com/andriafraderick/My-Book-Project" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">07</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">08</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">My Book Project</div>
       <p class="project-desc">Full-featured Django book store — admins manage books and authors, users browse, add to cart, and checkout with Stripe payment integration.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Stripe</span><span class="tag">Cart</span><span class="tag">Auth</span></div>
     </a>
 
+    <!-- PROJECT 09 -->
     <a href="https://github.com/andriafraderick/Recipe-World" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">08</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">09</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Recipe World</div>
       <p class="project-desc">Recipe management platform enabling users to add, view, and manage recipes with full database integration and a clean, responsive UI.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">SQL</span><span class="tag">Python</span></div>
     </a>
 
+    <!-- PROJECT 10 -->
     <a href="https://github.com/andriafraderick/Tourist-Destinations" target="_blank" class="project-card reveal" data-category="frontend">
-      <div class="project-card-top"><div class="project-num">09</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">10</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Tourist Destinations</div>
       <p class="project-desc">Responsive web application to display tourist locations with structured UI and dynamic routing for smooth navigation.</p>
       <div class="project-tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">CSS</span></div>
     </a>
 
+    <!-- PROJECT 11 -->
     <a href="https://github.com/andriafraderick/Blog" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">10</div><svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">11</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Blog Application</div>
       <p class="project-desc">Blogging platform supporting content creation, editing, and CRUD operations with user authentication and a responsive design.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span></div>
