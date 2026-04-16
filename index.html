@@ -19,7 +19,6 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
-
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -28,15 +27,8 @@
   }
 
   /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 6vw;
-    background: rgba(11,12,16,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 6vw; background: rgba(11,12,16,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--accent); text-decoration: none; letter-spacing: -0.02em; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
@@ -45,7 +37,6 @@
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 6vw; position: relative; overflow: hidden; }
   .hero-blob { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(200,240,76,0.12) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; animation: blobPulse 8s ease-in-out infinite; }
   @keyframes blobPulse { 0%,100%{transform:scale(1) translate(0,0)} 50%{transform:scale(1.1) translate(-30px,30px)} }
-
   .hero-label { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity:0; animation: fadeUp 0.7s 0.2s forwards; }
   h1 { font-family: 'Syne', sans-serif; font-size: clamp(3.2rem,8vw,7rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1.8rem; opacity:0; animation: fadeUp 0.7s 0.4s forwards; }
   h1 span { color: var(--accent); }
@@ -67,9 +58,10 @@
 
   /* ── EXPERIENCE ── */
   #experience { background: var(--surface); }
-  .exp-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.2rem; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; transition: border-color 0.2s, transform 0.2s; margin-bottom: 1rem; }
-  .exp-card:hover { border-color: rgba(200,240,76,0.3); transform: translateX(4px); }
+  .exp-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.2rem; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; margin-bottom: 1rem; }
+  .exp-card:hover { border-color: rgba(200,240,76,0.4); transform: translateX(6px); box-shadow: -4px 0 24px rgba(200,240,76,0.08); }
   .exp-card.current { border-color: rgba(200,240,76,0.4); background: linear-gradient(135deg, rgba(200,240,76,0.05) 0%, var(--surface2) 60%); }
+  .exp-card.current:hover { box-shadow: -4px 0 30px rgba(200,240,76,0.14); }
   .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); }
   .exp-company { font-size: 0.9rem; color: var(--accent); margin: 0.2rem 0; font-weight: 500; }
   .exp-desc { font-size: 0.88rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.7; }
@@ -79,37 +71,112 @@
   /* ── SKILLS ── */
   #skills { background: var(--bg); }
   .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .skill-pill { padding: 0.55rem 1.3rem; border-radius: 50px; background: var(--surface2); border: 1px solid var(--border); font-size: 0.88rem; color: var(--text); font-weight: 400; transition: all 0.2s; }
-  .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,240,76,0.07); }
+  .skill-pill { padding: 0.55rem 1.3rem; border-radius: 50px; background: var(--surface2); border: 1px solid var(--border); font-size: 0.88rem; color: var(--text); font-weight: 400; transition: all 0.2s; cursor: default; }
+  .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,240,76,0.08); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(200,240,76,0.15); }
 
   /* ── PROJECTS ── */
   #projects { background: var(--surface); }
   .projects-filter { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .filter-btn { padding: 0.4rem 1.1rem; border-radius: 50px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 0.8rem; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; }
   .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(200,240,76,0.07); }
-
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
 
-  .project-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; transition: all 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; cursor: pointer; position: relative; overflow: hidden; }
-  .project-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,240,76,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
-  .project-card:hover { border-color: rgba(200,240,76,0.4); transform: translateY(-5px); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
+  /* ── BASE PROJECT CARD with rich hover ── */
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  /* shimmer sweep on hover */
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 60%;
+    height: 220%;
+    background: linear-gradient(105deg, transparent 40%, rgba(200,240,76,0.07) 50%, transparent 60%);
+    transform: skewX(-15deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+  .project-card:hover::before { left: 160%; }
+  /* glow overlay */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    background: radial-gradient(circle at 50% 0%, rgba(200,240,76,0.06) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .project-card:hover {
+    border-color: rgba(200,240,76,0.45);
+    transform: translateY(-7px) scale(1.01);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.55), 0 0 0 1px rgba(200,240,76,0.1), 0 0 30px rgba(200,240,76,0.07);
+  }
   .project-card:hover::after { opacity: 1; }
 
-  /* featured card — project 01 */
-  .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; background: linear-gradient(135deg, rgba(200,240,76,0.06) 0%, var(--bg) 50%); border-color: rgba(200,240,76,0.2); }
-  .project-card.featured .project-num { font-size: 4rem; }
-  .project-card.featured .project-title { font-size: 1.3rem; }
-  .project-card.featured::after { background: linear-gradient(135deg, rgba(200,240,76,0.07) 0%, transparent 50%); }
-  .featured-badge { display: inline-block; background: var(--accent); color: #0b0c10; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 50px; margin-bottom: 0.6rem; }
-
   .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
-  .project-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: rgba(200,240,76,0.15); line-height: 1; }
-  .github-icon { color: var(--muted); transition: color 0.2s; flex-shrink: 0; margin-top: 4px; }
-  .project-card:hover .github-icon { color: var(--accent); }
-  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 0.6rem; }
-  .project-desc { font-size: 0.86rem; color: var(--muted); flex: 1; line-height: 1.7; }
+  .project-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: rgba(200,240,76,0.15); line-height: 1; transition: color 0.3s; }
+  .project-card:hover .project-num { color: rgba(200,240,76,0.3); }
+  .github-icon { color: var(--muted); transition: color 0.25s, transform 0.25s; flex-shrink: 0; margin-top: 4px; }
+  .project-card:hover .github-icon { color: var(--accent); transform: rotate(8deg) scale(1.15); }
+  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 0.6rem; transition: color 0.25s; }
+  .project-card:hover .project-title { color: #fff; }
+  .project-desc { font-size: 0.86rem; color: var(--muted); flex: 1; line-height: 1.7; transition: color 0.25s; }
+  .project-card:hover .project-desc { color: #9ca3af; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
-  .tag { font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 4px; background: rgba(200,240,76,0.1); color: var(--accent); font-weight: 500; }
+  .tag { font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 4px; background: rgba(200,240,76,0.08); color: rgba(200,240,76,0.7); font-weight: 500; transition: background 0.25s, color 0.25s; }
+  .project-card:hover .tag { background: rgba(200,240,76,0.15); color: var(--accent); }
+
+  /* ── FEATURED CARD (Project 01) ── */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    background: linear-gradient(135deg, rgba(200,240,76,0.06) 0%, var(--bg) 55%);
+    border-color: rgba(200,240,76,0.22);
+    padding: 2.5rem;
+  }
+  .project-card.featured:hover {
+    border-color: rgba(200,240,76,0.6);
+    transform: translateY(-8px) scale(1.005);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,240,76,0.15), 0 0 60px rgba(200,240,76,0.1);
+  }
+  .project-card.featured::after {
+    background: radial-gradient(ellipse at 50% -10%, rgba(200,240,76,0.1) 0%, transparent 60%);
+  }
+  .featured-left { display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem; padding-top: 0.3rem; }
+  .featured-num { font-family: 'Syne', sans-serif; font-size: 5.5rem; font-weight: 800; color: rgba(200,240,76,0.15); line-height: 1; transition: color 0.3s; }
+  .project-card.featured:hover .featured-num { color: rgba(200,240,76,0.32); }
+  .featured-badge { display: inline-block; background: var(--accent); color: #0b0c10; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.85rem; border-radius: 50px; white-space: nowrap; }
+  .featured-right { display: flex; flex-direction: column; }
+  .featured-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.9rem; gap: 1rem; }
+  .featured-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.7rem; color: var(--text); line-height: 1.15; transition: color 0.25s; }
+  .project-card.featured:hover .featured-title { color: #fff; }
+  .featured-desc { font-size: 0.93rem; color: var(--muted); line-height: 1.85; transition: color 0.25s; }
+  .project-card.featured:hover .featured-desc { color: #9ca3af; }
+  .featured-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 1.2rem; }
+  .highlight { background: rgba(200,240,76,0.05); border: 1px solid rgba(200,240,76,0.1); border-radius: 10px; padding: 0.9rem 1rem; transition: background 0.25s, border-color 0.25s, transform 0.25s; }
+  .project-card.featured:hover .highlight { background: rgba(200,240,76,0.09); border-color: rgba(200,240,76,0.22); }
+  .highlight:hover { transform: translateY(-2px); }
+  .highlight-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.35rem; }
+  .highlight-value { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--accent); }
+
   .view-all-wrap { text-align: center; margin-top: 2.5rem; }
 
   /* ── CONTACT ── */
@@ -117,25 +184,28 @@
   .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .contact-text { font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 2rem; }
   .contact-links { display: flex; flex-direction: column; gap: 0.9rem; }
-  .contact-link { display: flex; align-items: center; gap: 1rem; color: var(--text); text-decoration: none; font-size: 0.95rem; padding: 0.9rem 1.2rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); transition: all 0.2s; }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link { display: flex; align-items: center; gap: 1rem; color: var(--text); text-decoration: none; font-size: 0.95rem; padding: 0.9rem 1.2rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); transition: all 0.25s; }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(4px); box-shadow: -3px 0 20px rgba(200,240,76,0.08); }
+  .contact-link svg { flex-shrink: 0; transition: transform 0.25s; }
+  .contact-link:hover svg { transform: scale(1.15); }
 
   footer { text-align: center; padding: 2.5rem 6vw; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
   .line { height: 1px; background: var(--border); margin: 0 6vw; }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* GitHub SVG shorthand */
   .gh { fill: currentColor; }
 
   @media (max-width: 900px) {
-    .project-card.featured { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; gap: 1rem; }
+    .featured-highlights { grid-template-columns: 1fr 1fr; }
+    .featured-num { font-size: 3.5rem; }
   }
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
     .exp-card { grid-template-columns: 1fr; }
     .exp-date { text-align: left; }
+    .featured-highlights { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -166,7 +236,7 @@
     <span class="badge">Python</span>
     <span class="badge">Django · FastAPI</span>
     <span class="badge">React</span>
-    <span class="badge">SQL</span>
+    <span class="badge">PostgreSQL</span>
     <span class="badge">Machine Learning</span>
     <span class="badge">REST APIs</span>
     <span class="badge">Flutter</span>
@@ -230,40 +300,16 @@
 <section id="skills">
   <p class="section-label reveal">What I work with</p>
   <h2 class="section-title reveal">Skills</h2>
-
   <div style="margin-bottom:2rem">
     <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Technical</p>
     <div class="skills-wrap reveal">
-      <span class="skill-pill">Python</span>
-      <span class="skill-pill">Django</span>
-      <span class="skill-pill">FastAPI</span>
-      <span class="skill-pill">React</span>
-      <span class="skill-pill">Flutter</span>
-      <span class="skill-pill">SQL</span>
-      <span class="skill-pill">HTML / CSS</span>
-      <span class="skill-pill">JavaScript</span>
-      <span class="skill-pill">C</span>
-      <span class="skill-pill">REST APIs</span>
-      <span class="skill-pill">Firebase</span>
-      <span class="skill-pill">Flask</span>
-      <span class="skill-pill">Scikit-learn</span>
-      <span class="skill-pill">Machine Learning</span>
-      <span class="skill-pill">Chart.js</span>
-      <span class="skill-pill">D3.js</span>
-      <span class="skill-pill">Stripe</span>
-      <span class="skill-pill">Postman</span>
-      <span class="skill-pill">Git</span>
+      <span class="skill-pill">Python</span><span class="skill-pill">Django</span><span class="skill-pill">FastAPI</span><span class="skill-pill">React</span><span class="skill-pill">Flutter</span><span class="skill-pill">SQL</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">HTML / CSS</span><span class="skill-pill">JavaScript</span><span class="skill-pill">C</span><span class="skill-pill">REST APIs</span><span class="skill-pill">Firebase</span><span class="skill-pill">Flask</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">Machine Learning</span><span class="skill-pill">Chart.js</span><span class="skill-pill">D3.js</span><span class="skill-pill">Stripe</span><span class="skill-pill">Postman</span><span class="skill-pill">Git</span>
     </div>
   </div>
-
   <div>
     <p style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Soft Skills</p>
     <div class="skills-wrap reveal">
-      <span class="skill-pill">Team Collaboration</span>
-      <span class="skill-pill">Agile / Scrum</span>
-      <span class="skill-pill">Process Innovation</span>
-      <span class="skill-pill">Resource Coordination</span>
-      <span class="skill-pill">Communication</span>
+      <span class="skill-pill">Team Collaboration</span><span class="skill-pill">Agile / Scrum</span><span class="skill-pill">Process Innovation</span><span class="skill-pill">Resource Coordination</span><span class="skill-pill">Communication</span>
     </div>
   </div>
 </section>
@@ -282,104 +328,128 @@
 
   <div class="projects-grid">
 
-    <!-- PROJECT 01 — FEATURED (latest) -->
-    <a href="https://github.com/andriafraderick/University-crm-sample" target="_blank" class="project-card featured reveal" data-category="fullstack">
-      <div>
-        <div class="project-num">01</div>
+    <!-- ── 01 FEATURED ── -->
+    <a href="https://github.com/andriafraderick/multi-vendor-marketplace" target="_blank" class="project-card featured reveal" data-category="fullstack">
+      <div class="featured-left">
+        <div class="featured-num">01</div>
+        <span class="featured-badge">⚡ Latest</span>
       </div>
-      <div>
-        <span class="featured-badge">⚡ Latest Project</span>
-        <div class="project-card-top" style="margin-bottom:0.4rem">
-          <div class="project-title">University CRM System</div>
-          <svg class="github-icon" width="22" height="22" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+      <div class="featured-right">
+        <div class="featured-title-row">
+          <div class="featured-title">Multi-Vendor<br/>Marketplace</div>
+          <svg class="github-icon" width="24" height="24" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
         </div>
-        <p class="project-desc">A full-stack demo web application for managing university operations — students, courses, enrollments, attendance, grades, and fees. Built with Django REST Framework on the backend and React on the frontend, featuring role-based access, RESTful APIs, and a clean admin-facing dashboard.</p>
+        <p class="featured-desc">A production-ready multi-vendor marketplace where buyers can browse and purchase products from multiple sellers, vendors can manage their own stores with real-time analytics, and admins have full platform oversight with commission tracking and content moderation.</p>
+        <div class="featured-highlights">
+          <div class="highlight">
+            <div class="highlight-label">Roles</div>
+            <div class="highlight-value">Buyer · Vendor · Admin</div>
+          </div>
+          <div class="highlight">
+            <div class="highlight-label">Payments</div>
+            <div class="highlight-value">Stripe Integration</div>
+          </div>
+          <div class="highlight">
+            <div class="highlight-label">Database</div>
+            <div class="highlight-value">PostgreSQL</div>
+          </div>
+        </div>
         <div class="project-tags">
-          <span class="tag">Django REST Framework</span>
-          <span class="tag">React</span>
           <span class="tag">Python</span>
-          <span class="tag">SQL</span>
+          <span class="tag">Django</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Stripe</span>
           <span class="tag">REST APIs</span>
-          <span class="tag">CRM</span>
+          <span class="tag">Real-time Analytics</span>
+          <span class="tag">Multi-role Auth</span>
+          <span class="tag">Commission Tracking</span>
         </div>
       </div>
     </a>
 
-    <!-- PROJECT 02 -->
-    <a href="https://github.com/andriafraderick/Cinematch" target="_blank" class="project-card reveal" data-category="ml fullstack">
+    <!-- 02 -->
+    <a href="https://github.com/andriafraderick/University-crm-sample" target="_blank" class="project-card reveal" data-category="fullstack">
       <div class="project-card-top"><div class="project-num">02</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-title">University CRM System</div>
+      <p class="project-desc">Full-stack app for managing university operations — students, courses, enrollments, attendance, grades, and fees — built with Django REST Framework and React.</p>
+      <div class="project-tags"><span class="tag">Django REST</span><span class="tag">React</span><span class="tag">Python</span><span class="tag">SQL</span></div>
+    </a>
+
+    <!-- 03 -->
+    <a href="https://github.com/andriafraderick/Cinematch" target="_blank" class="project-card reveal" data-category="ml fullstack">
+      <div class="project-card-top"><div class="project-num">03</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Cinematch</div>
       <p class="project-desc">Full-stack Django app with a hybrid ML recommendation engine combining collaborative filtering and content-based analysis to deliver personalized movie recommendations.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Machine Learning</span><span class="tag">Collaborative Filtering</span><span class="tag">Python</span></div>
     </a>
 
-    <!-- PROJECT 03 -->
+    <!-- 04 -->
     <a href="https://github.com/andriafraderick/SpendWise" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">03</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">04</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">SpendWise</div>
       <p class="project-desc">Full-featured Django expense tracker with bold, colorful UI, Chart.js + D3.js visualizations, multi-user auth, budgets, and category management.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Chart.js</span><span class="tag">D3.js</span><span class="tag">Multi-user Auth</span></div>
     </a>
 
-    <!-- PROJECT 04 -->
+    <!-- 05 -->
     <a href="https://github.com/andriafraderick/PhishGuard" target="_blank" class="project-card reveal" data-category="ml">
-      <div class="project-card-top"><div class="project-num">04</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">05</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">PhishGuard — Malicious URL Detection</div>
       <p class="project-desc">Random Forest classifier analyzing URL length, domain age, and lexical patterns. Outperformed Logistic Regression by 12% accuracy, deployed via Flask API processing 100+ requests/min.</p>
       <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Flask</span><span class="tag">Random Forest</span></div>
     </a>
 
-    <!-- PROJECT 05 -->
+    <!-- 06 -->
     <a href="https://github.com/andriafraderick/Employee-Leave-Management-System" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">05</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">06</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Employee Leave Management System</div>
       <p class="project-desc">Full-stack web application for managing employee leave requests, approvals, and tracking — built with FastAPI backend and React Vite frontend.</p>
       <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQL</span></div>
     </a>
 
-    <!-- PROJECT 06 -->
+    <!-- 07 -->
     <a href="https://github.com/andriafraderick/e-learning-platform" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">06</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">07</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">E-Learning Platform</div>
       <p class="project-desc">Comprehensive Django-based e-learning platform with role-based access control for Students, Trainers, and Managers — supporting structured learning modules.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">RBAC</span><span class="tag">Python</span><span class="tag">SQL</span></div>
     </a>
 
-    <!-- PROJECT 07 -->
+    <!-- 08 -->
     <a href="https://github.com/andriafraderick/E-Hospitality-System" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">07</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">08</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">E-Hospitality — Hospital Management</div>
       <p class="project-desc">Full-stack hospital management app with Django/FastAPI REST APIs, React frontend, authentication, and CRUD for patient, appointment, and staff workflows.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">SQL</span></div>
     </a>
 
-    <!-- PROJECT 08 -->
+    <!-- 09 -->
     <a href="https://github.com/andriafraderick/My-Book-Project" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">08</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">09</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">My Book Project</div>
       <p class="project-desc">Full-featured Django book store — admins manage books and authors, users browse, add to cart, and checkout with Stripe payment integration.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">Stripe</span><span class="tag">Cart</span><span class="tag">Auth</span></div>
     </a>
 
-    <!-- PROJECT 09 -->
+    <!-- 10 -->
     <a href="https://github.com/andriafraderick/Recipe-World" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">09</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">10</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Recipe World</div>
       <p class="project-desc">Recipe management platform enabling users to add, view, and manage recipes with full database integration and a clean, responsive UI.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">SQL</span><span class="tag">Python</span></div>
     </a>
 
-    <!-- PROJECT 10 -->
+    <!-- 11 -->
     <a href="https://github.com/andriafraderick/Tourist-Destinations" target="_blank" class="project-card reveal" data-category="frontend">
-      <div class="project-card-top"><div class="project-num">10</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">11</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Tourist Destinations</div>
       <p class="project-desc">Responsive web application to display tourist locations with structured UI and dynamic routing for smooth navigation.</p>
       <div class="project-tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">CSS</span></div>
     </a>
 
-    <!-- PROJECT 11 -->
+    <!-- 12 -->
     <a href="https://github.com/andriafraderick/Blog" target="_blank" class="project-card reveal" data-category="fullstack">
-      <div class="project-card-top"><div class="project-num">11</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
+      <div class="project-card-top"><div class="project-num">12</div><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24"><path class="gh" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></div>
       <div class="project-title">Blog Application</div>
       <p class="project-desc">Blogging platform supporting content creation, editing, and CRUD operations with user authentication and a responsive design.</p>
       <div class="project-tags"><span class="tag">Django</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span></div>
@@ -427,13 +497,11 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Project filter
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
